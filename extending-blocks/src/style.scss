@@ -1,0 +1,28 @@
+/*--------------------------------------------------------------
+    Extending default blocks
+--------------------------------------------------------------*/
+.is-style-fancy-heading,
+.is-style-fancy-list,
+.is-style-fancy-media-text,
+.is-style-fancy-paragraph,
+.is-style-fancy-preformatted,
+.is-style-fancy-pullquote,
+.is-style-fancy-quote,
+.is-style-fancy-table,
+.is-style-fancy-verse {
+    color: pink;
+}
+
+/* Default list
+------------------------------*/
+.is-style-fancy-list {
+    li {
+
+    }
+}
+
+/* Default heading
+------------------------------*/
+.is-style-fancy-heading {
+
+}
