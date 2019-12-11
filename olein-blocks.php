@@ -15,3 +15,4 @@
 defined( 'ABSPATH' ) || exit;
 
 include 'extending-blocks/index.php';
+include 'editable-blocks/index.php';
