@@ -1,5 +1,9 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { RichText } from '@wordpress/block-editor';
+import {
+    RichText,
+    AlignmentToolbar,
+    BlockControls,
+} from '@wordpress/block-editor';
 
 // namespace/block-name will change to block css class name
 // as 'wp-block-{namespace}-{block-name}
@@ -24,6 +28,10 @@ registerBlockType( 'olein-blocks/editable-blocks', {
             source: 'children',
             selector: 'p',
         },
+        alignment: {
+            type: 'string',
+            default: 'none',
+        },
     },
 
     // you can set preview for the block to be shown in the inspector help panel when the user mouses over the block
@@ -31,24 +39,54 @@ registerBlockType( 'olein-blocks/editable-blocks', {
     example: {
         attributes: {
             content: 'Hello World',
+            aligment: 'right',
         },
     },
 
     edit: ( props ) => {
-        const { attributes: { content }, setAttributes, className } = props;
+        const {
+            attributes: {
+                content,
+                alignment,
+            },
+            className
+        } = props;
+
         const onChangeContent = ( newContent ) => {
-            setAttributes( { content: newContent } );
+            props.setAttributes( { content: newContent } );
         };
+
+        const onChangeAlignment = ( newAlignment ) => {
+            props.setAttributes( { alignment: newAlignment === undefined ? 'none' : newAlignment } );
+        };
+
         return (
-            <RichText
-                tagName="p"
-                className={ className }
-                onChange={ onChangeContent }
-                value={ content }
-            />
+            <div>
+                {
+                    <BlockControls>
+                        <AlignmentToolbar
+                            value={ alignment }
+                            onChange={ onChangeAlignment }
+                        />
+                    </BlockControls>
+                }
+                <RichText
+                    className={ className }
+                    style={ { textAlign: alignment } }
+                    tagName="p"
+                    onChange={ onChangeContent }
+                    value={ content }
+                />
+            </div>
         );
     },
     save: ( props ) => {
-        return <RichText.Content tagName="p" value={ props.attributes.content } />;
+        return (
+            <RichText.Content
+                className={ `gutenberg-examples-align-${ props.attributes.alignment }` }
+                tagName="p"
+                value={ props.attributes.content }
+            />
+        );
     },
 } );
