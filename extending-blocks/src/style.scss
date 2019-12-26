@@ -26,3 +26,12 @@
 .is-style-fancy-heading {
 
 }
+
+/* Original button
+------------------------------*/
+.is-style-original-button {
+    margin: 30px 0;
+    .wp-block-button__link {
+        background-color: darkblue;
+    }
+}

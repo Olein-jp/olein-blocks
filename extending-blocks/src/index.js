@@ -96,3 +96,14 @@ wp.blocks.registerBlockStyle(
         label: 'Fancy verse' // It'll be visible label name in sidebar (inspector) styles.
     }
 );
+
+/**
+ * button
+ */
+wp.blocks.registerBlockStyle(
+    'core/button',
+    {
+        name: 'original-button', // It'll be CSS class name as .is-style-***** .
+        label: 'Original Button' // It'll be visible label name in sidebar (inspector) styles.
+    }
+);
